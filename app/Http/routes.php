@@ -10,10 +10,8 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-use App\Models\Adress;
 Route::get('/', function()
 {
-
 	return View::make('home');
 });
 
@@ -41,7 +39,6 @@ Route::get('/buttons', function()
 {
 	return View::make('buttons');
 });
-
 
 Route::get('/icons', function()
 {
