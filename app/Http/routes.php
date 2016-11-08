@@ -104,6 +104,16 @@ Route::get('/ranges/create', 'RangeController@create');
 Route::get('/ranges/store', 'PromoController@store');
 Route::get('/ranges/show/{id}', 'PromoController@show');
 
+
+
+Route::get('/reservations', 'ReservationController@index');
+Route::get('/reservations/{id}/delete/','ReservationController@destroy');
+Route::get('/reservations//edit/','ReservationController@edit');
+Route::get('/reservations/update', 'ReservationController@update');
+Route::get('/reservations/create', 'ReservationController@create');
+Route::put('/reservations/store', 'ReservationController@store');
+Route::get('/reservations/show/{id}', 'PromoController@show');
+
 Route::get('/test', function()
 {
 	return View::make('promo/test');
