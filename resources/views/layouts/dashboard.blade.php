@@ -326,6 +326,18 @@
                         <li {{ (Request::is('*documentation') ? 'class="active"' : '') }}>
                             <a href="{{ url ('documentation') }}"><i class="fa fa-file-word-o fa-fw"></i> Documentation</a>
                         </li>
+                        <li >
+                            <a href="{{ url ('/cars') }}">Cars</a>
+                        </li>
+                        <li >
+                            <a href="{{ url ('/options') }}">options</a>
+                        </li>
+                        <li >
+                            <a href="{{ url ('/promos') }}">promos</a>
+                        </li>
+                        <li >
+                            <a href="{{ url ('/ranges') }}">ranges</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

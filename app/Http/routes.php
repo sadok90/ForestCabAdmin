@@ -74,3 +74,37 @@ Route::get('/documentation', function()
 {
 	return View::make('documentation');
 });
+
+Route::get('/cars', 'CarController@index');
+Route::get('/cars/delete/{id}','CarController@destroy');
+Route::get('/cars/edit/{id}','CarController@edit');
+Route::get('/cars/update', 'CarController@update');
+Route::get('/cars/create', 'CarController@create');
+Route::get('/cars/store', 'CarController@store');
+
+Route::get('/options', 'OptionController@index');
+Route::get('/options/delete/{id}','OptionController@destroy');
+Route::get('/options/edit/{id}','OptionController@edit');
+Route::get('/options/update', 'OptionController@update');
+Route::get('/options/create', 'OptionController@create');
+Route::get('/options/store', 'OptionController@store');
+
+Route::get('/promos', 'PromoController@index');
+Route::get('/promos/delete/{id}','PromoController@destroy');
+Route::get('/promos/edit/{id}','PromoController@edit');
+Route::get('/promos/update', 'PromoController@update');
+Route::get('/promos/create', 'PromoController@create');
+Route::get('/promos/store', 'PromoController@store');
+
+Route::get('/ranges', 'RangeController@index');
+Route::get('/ranges/delete/{id}','RangeController@destroy');
+Route::get('/ranges/edit/{id}','RangeController@edit');
+Route::get('/ranges/update', 'RangeController@update');
+Route::get('/ranges/create', 'RangeController@create');
+Route::get('/ranges/store', 'PromoController@store');
+Route::get('/ranges/show/{id}', 'PromoController@show');
+
+Route::get('/test', function()
+{
+	return View::make('promo/test');
+});

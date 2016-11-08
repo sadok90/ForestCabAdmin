@@ -66,7 +66,7 @@
 			</thead>
 			<tbody>
 				<tr class="success">
-					<td>John</td>
+					<td>Johns</td>
 					<td>john@gmail.com</td>
 					<td>London, UK</td>
 				</tr>
