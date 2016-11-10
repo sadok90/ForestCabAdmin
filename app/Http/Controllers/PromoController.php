@@ -11,7 +11,7 @@ use Parse\ParseUser;
 use Parse\ParseInstallation;
 use Parse\ParseException;
 use Parse\ParseAnalytics;
-use Parse\ParseFile;
+use Parse\ParseFile; 
 use Parse\ParseCloud;
 use Parse\ParseClient;
 
@@ -24,9 +24,17 @@ class PromoController extends Controller {
 	 */
 	public function index()
 	{
-		$query = new ParseQuery("Promo");
-		$promos = $query->find();
-		return view('promo/index',compact('promos'));
+		try
+		{
+			$query = new ParseQuery("Promo");
+			$promos = $query->find();
+			return view('promo/index',compact('promos'));
+		}
+	catch(ParseException $ex)
+		{
+
+
+	 	}
 	}
 
 	/**
@@ -48,20 +56,24 @@ class PromoController extends Controller {
 	{
 		try
 		{
+			
+			$start_date = date_create_from_format('d-m-Y H:i', $request->get('start_date'));
+			$end_date = date_create_from_format('d-m-Y H:i', $request->get('end_date'));
 			$promo=new ParseObject("Promo");
-			//$promo->set("start_date",$request->get('start_date'));
+			$promo->set("start_date",$start_date);
 			$promo->set("name",$request->get('name'));
 			$promo->set("promo_description",$request->get('promo_description'));
-			//$promo->set("end_date",$request->get('end_date'));
+			$promo->set("end_date",$end_date);
 			$promo->set("percent",(int)$request->get('percent'));
 			$promo->save();
+			
 		}
 		catch(ParseException $ex)
 		{
-echo "erreur";
+
 	 	}
-	 	echo "ok";
-	 	//return back();
+	 	
+	 	return back();
 	}
 
 	/**
@@ -83,9 +95,17 @@ echo "erreur";
 	 */
 	public function edit($id)
 	{
-		$promos = new ParseQuery("Promo");
-		$promo = $promos->get($id);
-		return view('promo/edit', compact('promo'));
+		try
+		{
+			$promos = new ParseQuery("Promo");
+			$promo = $promos->get($id);
+			return view('promo/edit', compact('promo'));
+		}
+	catch(ParseException $ex)
+		{
+
+
+	 	}
 	}
 
 	/**
@@ -98,20 +118,24 @@ echo "erreur";
 	{
 		try
 		{
+			$start_date = date_create_from_format('d-m-Y H:i', $request->get('start_date'));
+			$end_date = date_create_from_format('d-m-Y H:i', $request->get('end_date'));
 			$promos = new ParseQuery("Promo");
-			$promo = $promos->get($id);
-			$promo->set("start_date",$request->get('start_date'));
+			$promo = $promos->get($request->get('id'));
+			$promo->set("start_date",$start_date);
 			$promo->set("name",$request->get('name'));
 			$promo->set("promo_description",$request->get('promo_description'));
-			$promo->set("end_date",$request->get('end_date'));
-			$promo->set("percent",$request->get('percent'));
+			$promo->set("end_date",$end_date);
+			$promo->set("percent",(int)$request->get('percent'));
 			$promo->save();
+			
 		}
 		catch(ParseException $ex)
 		{
 
 
- 		}
+	 	}
+ 		return back();
 	}
 
 	/**
@@ -127,8 +151,10 @@ echo "erreur";
 			$promos = new ParseQuery("Promo");
 			$promo = $promos->get($id);
 			$promo->destroy();
+			
 		}
-		catch(ParseException $ex){
+		catch(ParseException $ex)
+		{
 		}
 		return back();
 	}

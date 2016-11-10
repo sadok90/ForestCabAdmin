@@ -1,17 +1,18 @@
 @extends('layouts.dashboard')
-@section('page_heading','Option index')
+@section('page_heading',trans('forestCab.Options'))
 @section('section')
-     <a href="{{ url ('/options/create') }}">Create</a>      
-  	@section ('cotable_panel_title','Option')
+     <a href="{{ url ('/options/create') }}">{{trans('forestCab.Create')}}</a>      
+  	@section ('cotable_panel_title',trans('forestCab.Option'))
 		@section ('cotable_panel_body')
 		
 			<table class="table table-bordered">
 				<thead>
 					<tr>
 						
-						<th>name</th>
-						<th>option_description</th>
+						<th>{{trans('forestCab.Name')}}</th>
+						<th>{{trans('forestCab.Description')}}</th>
 						
+
 					</tr>
 				</thead>
 				<tbody>
@@ -21,8 +22,9 @@
 						<td>{{$option->get('option_description')}}</td>
 						<td>
 						
-						    <a href="{{ url ('/options/edit/'.$option->getObjectId()) }}"> Edit</a>
-						    <a href="{{ url ('/options/delete/'.$option->getObjectId()) }}"> Delete</a>
+						
+						    <a href="{{ url ('/options/'.$option->getObjectId().'/edit') }}"> {{trans('forestCab.Update')}}</a>
+						    <a href="{{ url ('/options/'.$option->getObjectId().'/delete') }}"> {{trans('forestCab.Delete')}}</a>
 							
 							
 						</td>

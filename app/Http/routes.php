@@ -83,26 +83,26 @@ Route::get('/cars/create', 'CarController@create');
 Route::get('/cars/store', 'CarController@store');
 
 Route::get('/options', 'OptionController@index');
-Route::get('/options/delete/{id}','OptionController@destroy');
-Route::get('/options/edit/{id}','OptionController@edit');
-Route::get('/options/update', 'OptionController@update');
+Route::get('/options/{id}/delete','OptionController@destroy');
+Route::get('/options/{id}/edit','OptionController@edit');
+Route::post('/options/update', 'OptionController@update');
 Route::get('/options/create', 'OptionController@create');
-Route::get('/options/store', 'OptionController@store');
+Route::post('/options/store', 'OptionController@store');
 
 Route::get('/promos', 'PromoController@index');
-Route::get('/promos/delete/{id}','PromoController@destroy');
-Route::get('/promos/edit/{id}','PromoController@edit');
-Route::get('/promos/update', 'PromoController@update');
+Route::get('/promos/{id}/delete','PromoController@destroy');
+Route::get('/promos/{id}/edit','PromoController@edit');
+Route::post('/promos/update', 'PromoController@update');
 Route::get('/promos/create', 'PromoController@create');
-Route::get('/promos/store', 'PromoController@store');
+Route::post('/promos/store', 'PromoController@store');
 
 Route::get('/ranges', 'RangeController@index');
-Route::get('/ranges/delete/{id}','RangeController@destroy');
-Route::get('/ranges/edit/{id}','RangeController@edit');
-Route::get('/ranges/update', 'RangeController@update');
+Route::get('/ranges/{id}/delete','RangeController@destroy');
+Route::get('/ranges/{id}/edit','RangeController@edit');
+Route::post('/ranges/update', 'RangeController@update');
 Route::get('/ranges/create', 'RangeController@create');
-Route::get('/ranges/store', 'PromoController@store');
-Route::get('/ranges/show/{id}', 'PromoController@show');
+Route::post('/ranges/store', 'RangeController@store');
+Route::get('/ranges/{id}/show', 'RangeController@show');
 
 
 

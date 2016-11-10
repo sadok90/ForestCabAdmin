@@ -1,17 +1,17 @@
 @extends('layouts.dashboard')
-@section('page_heading','Ranges index')
+@section('page_heading',trans('forestCab.Promos'))
 @section('section')
-     <a href="{{ url ('/ranges/create') }}">Create</a>      
-  	@section ('cotable_panel_title','ranges')
+     <a href="{{ url ('/ranges/create') }}">{{trans('forestCab.Create')}}</a>      
+  	@section ('cotable_panel_title',trans('forestCab.Range'))
 		@section ('cotable_panel_body')
 		
 			<table class="table table-bordered">
 				<thead>
 					<tr>
 						
-						<th>name</th>
-						<th>range_description</th>
-						<th>price</th>
+						<th>{{trans('forestCab.Name')}}</th>
+						<th>{{trans('forestCab.Description')}}</th>
+						<th>{{trans('forestCab.Price')}}</th>
 
 					</tr>
 				</thead>
@@ -24,9 +24,9 @@
 						<td>
 						
 						
-						    <a href="{{ url ('/ranges/edit/'.$range->getObjectId()) }}"> Edit</a>
-						    <a href="{{ url ('/ranges/delete/'.$range->getObjectId()) }}"> Delete</a>
-							<a href="{{ url ('/ranges/show/'.$range->getObjectId()) }}"> show</a>
+						    <a href="{{ url ('/ranges/'.$range->getObjectId().'/edit') }}"> {{trans('forestCab.Update')}}</a>
+						    <a href="{{ url ('/ranges/'.$range->getObjectId().'/delete') }}"> {{trans('forestCab.Delete')}}</a>
+							<a href="{{ url ('/ranges/'.$range->getObjectId().'/show') }}"> {{trans('forestCab.Show')}}</a>
 							
 						</td>
 						

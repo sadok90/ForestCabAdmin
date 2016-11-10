@@ -18,5 +18,6 @@
 	@yield('body')
 
 	<script type="text/javascript" src="{{ URL::to('assets/scripts/frontend.js') }}"></script> 
+	
 </body>
 </html>
