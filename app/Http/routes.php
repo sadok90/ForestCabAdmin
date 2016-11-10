@@ -10,10 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-Route::get('/', function()
-{
-	return View::make('home');
-});
+Route::get('/','HomeController@index');
 
 Route::get('/charts', function()
 {
@@ -69,6 +66,14 @@ Route::get('/login', function()
 {
 	return View::make('login');
 });
+Route::get('auth/login', function()
+{
+	return View::make('login');
+});
+Route::get('/reset', function()
+{
+	return View::make('/auth/reset');
+});
 
 Route::get('/documentation', function()
 {
@@ -89,6 +94,13 @@ Route::post('/options/update', 'OptionController@update');
 Route::get('/options/create', 'OptionController@create');
 Route::post('/options/store', 'OptionController@store');
 
+Route::get('/drivers', 'DriverController@index');
+Route::get('/drivers/{id}/delete','DriverController@destroy');
+Route::get('/drivers/{id}/edit','DriverController@edit');
+Route::post('/drivers/update', 'DriverController@update');
+Route::get('/drivers/create', 'DriverController@create');
+Route::post('/drivers/store', 'DriverController@store');
+
 Route::get('/promos', 'PromoController@index');
 Route::get('/promos/{id}/delete','PromoController@destroy');
 Route::get('/promos/{id}/edit','PromoController@edit');
@@ -106,13 +118,15 @@ Route::get('/ranges/{id}/show', 'RangeController@show');
 
 
 
+
+
 Route::get('/reservations', 'ReservationController@index');
 Route::get('/reservations/{id}/delete/','ReservationController@destroy');
-Route::get('/reservations//edit/','ReservationController@edit');
+Route::get('/reservations/{id}/edit/','ReservationController@edit');
 Route::get('/reservations/update', 'ReservationController@update');
 Route::get('/reservations/create', 'ReservationController@create');
-Route::put('/reservations/store', 'ReservationController@store');
-Route::get('/reservations/show/{id}', 'PromoController@show');
+Route::post('/reservations/store', 'ReservationController@store');
+Route::get('/reservations/{id}/show/', 'PromoController@show');
 
 Route::get('/test', function()
 {

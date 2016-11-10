@@ -15,10 +15,22 @@ return [
 
 	'welcome' => 'Welcome to our application',
 	'Name' => 'Nom ',
-	'Range' => 'Categorie ',
-	'range' => 'categorie ',
-	'Ranges' => 'Categories ',
-	'ranges' => 'categories ',
+	'Range' => 'Gamme ',
+	'range' => 'gamme ',
+	'Ranges' => 'Gammes ',
+	'ranges' => 'gammes ',
+	'Reservation' => 'Réservation ',
+	'reservation' => 'réservation ',
+	'Reservations' => 'Réservations ',
+	'reservations' => 'réservations ',
+	'Message' => 'Message ',
+	'message' => 'message ',
+	'Messages' => 'Messages ',
+	'messages' => 'messages ',
+	'Driver' => 'Chauffeur ',
+	'driver' => 'chauffeur ',
+	'Drivers' => 'Chauffeurs ',
+	'drivers' => 'chauffeurs ',
 	'Price' => 'Prix ',
 	'description' => 'description ',
 	'Description' => 'Description ',
@@ -51,6 +63,12 @@ return [
 	'Startdate' => 'Date debut ',
 	'Enddate' => 'Date fin ',
 	'Percent' => 'Pourcentage ',
+	'GDR'=>'Gestion des reservations',
+	'LR'=>'Liste des reservations',
+	'Phone' => 'Téléphone ',
+	'Email' => 'Email ',
+
+
 
 
 

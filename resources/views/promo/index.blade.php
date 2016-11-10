@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('page_heading',trans('forestCab.Promos'))
 @section('section')
-     <a href="{{ url ('/promos/create') }}">{{trans('forestCab.Create')}}</a>      
+     <a href="{{ url ('/promos/create') }}"><i class="fa fa-plus-square-o fa-fw"></i>{{trans('forestCab.Create')}}</a>      
   	@section ('cotable_panel_title',trans('forestCab.Promo'))
 		@section ('cotable_panel_body')
 		
@@ -29,8 +29,8 @@
 						<td>
 						
 						
-						    <a href="{{ url ('/promos/'.$promo->getObjectId().'/edit') }}"> {{trans('forestCab.Update')}}</a>
-						    <a href="{{ url ('/promos/'.$promo->getObjectId().'/delete') }}"> {{trans('forestCab.Delete')}}</a>
+						    <a href="{{ url ('/promos/'.$promo->getObjectId().'/edit') }}"> <i class="fa  fa-edit fa-fw"></i> {{trans('forestCab.Update')}}</a>
+						    <a href="{{ url ('/promos/'.$promo->getObjectId().'/delete') }}"> <i class="fa   fa-times fa-fw"></i> {{trans('forestCab.Delete')}}</a>
 							
 							
 						</td>

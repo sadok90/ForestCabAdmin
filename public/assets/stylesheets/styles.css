@@ -6774,7 +6774,7 @@ button.close {
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased; 
   -moz-osx-font-smoothing: grayscale;
   transform: translate(0, 0);
 }
@@ -9236,6 +9236,7 @@ table.dataTable thead .sorting:after {
 .panel-green {
     border-color: #5cb85c;
 }
+
 
 .panel-green .panel-heading {
     border-color: #5cb85c;

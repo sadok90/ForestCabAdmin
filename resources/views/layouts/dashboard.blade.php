@@ -12,7 +12,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url ('') }}">SB Admin v2.0 | Laravel 5</a>
+                <a class="navbar-brand" href="{{ url ('') }}">ForestCab | Administration</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -216,12 +216,14 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                       <!-- 
+                       <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        -->
+                        <li><a href="/reset"><i class="fa fa-gear fa-fw"></i> Paramètres</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="{{ url ('login') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="{{ url ('login') }}"><i class="fa fa-sign-out fa-fw"></i> Déconnexion</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -235,7 +237,7 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
+                                <input type="text" class="form-control" placeholder="Recherche...">
                                 <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                     <i class="fa fa-search"></i>
@@ -243,13 +245,15 @@
                             </span>
                             </div>
                             <!-- /input-group -->
+
                         </li>
                         <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ url ('') }}"><i class="fa fa-dashboard fa-fw"></i> ForestCab</a>
                         </li>
+                        <!--
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
                             <a href="{{ url ('charts') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>
-                            <!-- /.nav-second-level -->
+                            
                         </li>
                         <li {{ (Request::is('*tables') ? 'class="active"' : '') }}>
                             <a href="{{ url ('tables') }}"><i class="fa fa-table fa-fw"></i> Tables</a>
@@ -279,7 +283,7 @@
                                     <a href="{{ url ('grid') }}">Grid</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
+                            
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
@@ -306,10 +310,10 @@
                                             <a href="#">Third Level Item</a>
                                         </li>
                                     </ul>
-                                    <!-- /.nav-third-level -->
+                                    
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
+                            
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
@@ -321,22 +325,30 @@
                                     <a href="{{ url ('login') }}">Login Page</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
+                            
                         </li>
                         <li {{ (Request::is('*documentation') ? 'class="active"' : '') }}>
                             <a href="{{ url ('documentation') }}"><i class="fa fa-file-word-o fa-fw"></i> Documentation</a>
                         </li>
+                        -->
+
                         <li >
-                            <a href="{{ url ('/cars') }}">Cars</a>
+                            <a href="{{ url ('/cars') }}"><i class="fa fa-car fa-fw"></i>{{trans('forestCab.Cars')}}</a>
                         </li>
                         <li >
-                            <a href="{{ url ('/options') }}">options</a>
+                            <a href="{{ url ('/drivers') }}"><i class="fa fa-male fa-fw"></i>{{trans('forestCab.Drivers')}}</a>
                         </li>
                         <li >
-                            <a href="{{ url ('/promos') }}">promos</a>
+                            <a href="{{ url ('/options') }}"><i class="fa fa-list-alt fa-fw"></i>{{trans('forestCab.Options')}}</a>
                         </li>
                         <li >
-                            <a href="{{ url ('/ranges') }}">ranges</a>
+                            <a href="{{ url ('/promos') }}"><i class="fa fa-tags fa-fw"></i>{{trans('forestCab.Promos')}}</a>
+                        </li>
+                        <li >
+                            <a href="{{ url ('/ranges') }}"><i class="fa fa-th-large fa-fw"></i>{{trans('forestCab.Ranges')}}</a>
+                        </li>
+                        <li >
+                            <a href="{{ url ('/reservations') }}"><i class="fa fa-shopping-cart fa-fw"></i>{{trans('forestCab.Reservation')}}</a>
                         </li>
                     </ul>
                 </div>

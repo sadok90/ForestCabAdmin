@@ -1,6 +1,6 @@
 @extends ('layouts.dashboard')
 @section('page_heading', "Update reservation")
-
+@section('section')
 <div class="col-lg-6">
         <form role="form" method="POST" action="/adress/store">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
