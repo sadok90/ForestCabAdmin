@@ -123,10 +123,15 @@ Route::get('/ranges/{id}/show', 'RangeController@show');
 Route::get('/reservations', 'ReservationController@index');
 Route::get('/reservations/{id}/delete/','ReservationController@destroy');
 Route::get('/reservations/{id}/edit/','ReservationController@edit');
-Route::get('/reservations/update', 'ReservationController@update');
+Route::post('/reservations/update', 'ReservationController@update');
 Route::get('/reservations/create', 'ReservationController@create');
 Route::post('/reservations/store', 'ReservationController@store');
 Route::get('/reservations/{id}/show/', 'PromoController@show');
+
+Route::get('/users', 'UserController@index');
+Route::get('/users/{id}/delete/','UserController@destroy');
+Route::get('/users/create', 'UserController@create');
+Route::post('/users/store', 'UserController@store');
 
 Route::get('/test', function()
 {

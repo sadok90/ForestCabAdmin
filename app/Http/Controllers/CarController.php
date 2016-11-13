@@ -50,6 +50,10 @@ class CarController extends Controller {
 	{
 		try
 		{
+			$this->validate($request, [
+			 	'car_description' => 'required',
+			 	'model' => 'required'
+		    ]);
 			$car=new ParseObject("Car");
 			$car->set("car_description",$request->get('car_description'));
 			$car->set("model",$request->get('model'));
@@ -96,6 +100,10 @@ class CarController extends Controller {
 	{
 		try
 		{
+			$this->validate($request, [
+			 	'car_description' => 'required',
+			 	'model' => 'required'
+		    ]);
 			$cars = new ParseQuery("Car");
 			$car = $cars->get($request->input('id'));
 			$car->set("car_description",$request->input('car_description'));
@@ -106,7 +114,7 @@ class CarController extends Controller {
 		}
 		catch(ParseException $ex)
 		{
-
+			echo $ex;
 
  		}
  		
@@ -129,6 +137,7 @@ class CarController extends Controller {
 			$car->destroy();
 		}
 		catch(ParseException $ex){
+			echo $ex;
 		}
 		return back();
 	}

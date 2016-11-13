@@ -49,5 +49,13 @@
             <button type="submit" class="btn btn-default">{{trans('forestCab.Create')}}</button>
         </div>    
         </form>        
-           
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif   
 @stop
