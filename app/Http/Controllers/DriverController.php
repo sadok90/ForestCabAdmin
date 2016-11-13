@@ -15,7 +15,7 @@ use Parse\ParseFile;
 use Parse\ParseCloud;
 use Parse\ParseClient;
 
-class OptionController extends Controller {
+class DriverController extends Controller {
 
 	/**m:
 	 * Display a listing of the resource.
@@ -24,9 +24,9 @@ class OptionController extends Controller {
 	 */
 	public function index()
 	{
-		$query = new ParseQuery("Option");
-		$options = $query->find();
-		return view('option/index' , compact('options'));
+		$query = new ParseQuery("Driver");
+		$drivers = $query->find();
+		return view('driver/index' , compact('drivers'));
 	}
 
 	/**
@@ -37,7 +37,7 @@ class OptionController extends Controller {
 	public function create()
 	{
 		
-		return view('option/create');
+		return view('driver/create');
 	}
 
 	/**
@@ -49,14 +49,17 @@ class OptionController extends Controller {
 	{
 		try
 		{
-			$this->validate($request, [
-			 	'option_description' => 'required',
-			 	'name' => 'required'
+
+			 $this->validate($request, [
+			 	'phone' => 'required',
+			 	'email' => 'required|email',
+			 	'number' => 'required'
 		    ]);
-			$option=new ParseObject("Option");
-			$option->set("option_description",$request->get('option_description'));
-			$option->set("name",$request->get('name'));
-			$option->save();
+			$driver=new ParseObject("Driver");
+			$driver->set("phone",$request->get('phone'));
+			$driver->set("name",$request->get('name'));
+			$driver->set("email",$request->get('email'));
+			$driver->save();
 		}
 		catch(ParseException $ex)
 		{
@@ -84,9 +87,9 @@ class OptionController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$options = new ParseQuery("Option");
-		$option = $options->get($id);
-		return view('option/edit', compact('option'));
+		$drivers = new ParseQuery("Driver");
+		$driver = $drivers->get($id);
+		return view('driver/edit', compact('driver'));
 	}
 
 	/**
@@ -100,14 +103,16 @@ class OptionController extends Controller {
 		try
 		{
 			$this->validate($request, [
-			 	'option_description' => 'required',
-			 	'name' => 'required'
+			 	'phone' => 'required',
+			 	'email' => 'required|email',
+			 	'number' => 'required'
 		    ]);
-			$options = new ParseQuery("Option");
-			$option = $options->get($request->input('id'));
-			$option->set("option_description",$request->input('option_description'));
-			$option->set("name",$request->input('name'));
-			$option->save();
+			$drivers = new ParseQuery("Driver");
+			$driver = $drivers->get($request->input('id'));
+			$driver->set("phone",$request->get('phone'));
+			$driver->set("name",$request->get('name'));
+			$driver->set("email",$request->get('email'));
+			$driver->save();
 
 
 		}
@@ -131,9 +136,9 @@ class OptionController extends Controller {
 	{
 		try
 		{
-			$options = new ParseQuery("Option");
-			$option = $options->get($id);
-			$option->destroy();
+			$drivers = new ParseQuery("Driver");
+			$driver = $drivers->get($id);
+			$driver->destroy();
 		}
 		catch(ParseException $ex){
 		}

@@ -1,17 +1,17 @@
 @extends('layouts.dashboard')
-@section('page_heading','Ranges index')
+@section('page_heading',trans('forestCab.Ranges'))
 @section('section')
-     <a href="{{ url ('/ranges/create') }}">Create</a>      
-  	@section ('cotable_panel_title','ranges')
+     <a href="{{ url ('/ranges/create') }}"><i class="fa fa-plus-square-o fa-fw"></i>{{trans('forestCab.Create')}}</a>      
+  	@section ('cotable_panel_title',trans('forestCab.Range'))
 		@section ('cotable_panel_body')
-		
+		<div class="table-responsive">
 			<table class="table table-bordered">
 				<thead>
 					<tr>
 						
-						<th>name</th>
-						<th>range_description</th>
-						<th>price</th>
+						<th>{{trans('forestCab.Name')}}</th>
+						<th>{{trans('forestCab.Description')}}</th>
+						<th>{{trans('forestCab.Price')}}</th>
 
 					</tr>
 				</thead>
@@ -24,16 +24,17 @@
 						<td>
 						
 						
-						    <a href="{{ url ('/ranges/edit/'.$range->getObjectId()) }}"> Edit</a>
-						    <a href="{{ url ('/ranges/delete/'.$range->getObjectId()) }}"> Delete</a>
-							<a href="{{ url ('/ranges/show/'.$range->getObjectId()) }}"> show</a>
+						    <a href="{{ url ('/ranges/'.$range->getObjectId().'/edit') }}"><i class="fa  fa-edit fa-fw"></i>  {{trans('forestCab.Update')}}</a>
+						    <a href="{{ url ('/ranges/'.$range->getObjectId().'/delete') }}"> <i class="fa   fa-times fa-fw"></i> {{trans('forestCab.Delete')}}</a>
+							<a href="{{ url ('/ranges/'.$range->getObjectId().'/show') }}"> <i class="fa   fa-desktop fa-fw"></i> {{trans('forestCab.Show')}}</a>
 							
 						</td>
 						
 					</tr>
 					@endforeach
 				</tbody>
-			</table>	
+			</table>
+			</div>	
 		@endsection
 		@include('widgets.panel', array('header'=>true, 'as'=>'cotable'))      
             

@@ -10,10 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-Route::get('/', function()
-{
-	return View::make('home');
-});
+Route::get('/','HomeController@index');
 
 Route::get('/charts', function()
 {
@@ -69,6 +66,14 @@ Route::get('/login', function()
 {
 	return View::make('login');
 });
+Route::get('auth/login', function()
+{
+	return View::make('login');
+});
+Route::get('/reset', function()
+{
+	return View::make('/auth/reset');
+});
 
 Route::get('/documentation', function()
 {
@@ -83,36 +88,50 @@ Route::get('/cars/create', 'CarController@create');
 Route::get('/cars/store', 'CarController@store');
 
 Route::get('/options', 'OptionController@index');
-Route::get('/options/delete/{id}','OptionController@destroy');
-Route::get('/options/edit/{id}','OptionController@edit');
-Route::get('/options/update', 'OptionController@update');
+Route::get('/options/{id}/delete','OptionController@destroy');
+Route::get('/options/{id}/edit','OptionController@edit');
+Route::post('/options/update', 'OptionController@update');
 Route::get('/options/create', 'OptionController@create');
-Route::get('/options/store', 'OptionController@store');
+Route::post('/options/store', 'OptionController@store');
+
+Route::get('/drivers', 'DriverController@index');
+Route::get('/drivers/{id}/delete','DriverController@destroy');
+Route::get('/drivers/{id}/edit','DriverController@edit');
+Route::post('/drivers/update', 'DriverController@update');
+Route::get('/drivers/create', 'DriverController@create');
+Route::post('/drivers/store', 'DriverController@store');
 
 Route::get('/promos', 'PromoController@index');
-Route::get('/promos/delete/{id}','PromoController@destroy');
-Route::get('/promos/edit/{id}','PromoController@edit');
-Route::get('/promos/update', 'PromoController@update');
+Route::get('/promos/{id}/delete','PromoController@destroy');
+Route::get('/promos/{id}/edit','PromoController@edit');
+Route::post('/promos/update', 'PromoController@update');
 Route::get('/promos/create', 'PromoController@create');
-Route::get('/promos/store', 'PromoController@store');
+Route::post('/promos/store', 'PromoController@store');
 
 Route::get('/ranges', 'RangeController@index');
-Route::get('/ranges/delete/{id}','RangeController@destroy');
-Route::get('/ranges/edit/{id}','RangeController@edit');
-Route::get('/ranges/update', 'RangeController@update');
+Route::get('/ranges/{id}/delete','RangeController@destroy');
+Route::get('/ranges/{id}/edit','RangeController@edit');
+Route::post('/ranges/update', 'RangeController@update');
 Route::get('/ranges/create', 'RangeController@create');
-Route::get('/ranges/store', 'PromoController@store');
-Route::get('/ranges/show/{id}', 'PromoController@show');
+Route::post('/ranges/store', 'RangeController@store');
+Route::get('/ranges/{id}/show', 'RangeController@show');
+
+
 
 
 
 Route::get('/reservations', 'ReservationController@index');
 Route::get('/reservations/{id}/delete/','ReservationController@destroy');
-Route::get('/reservations//edit/','ReservationController@edit');
-Route::get('/reservations/update', 'ReservationController@update');
+Route::get('/reservations/{id}/edit/','ReservationController@edit');
+Route::post('/reservations/update', 'ReservationController@update');
 Route::get('/reservations/create', 'ReservationController@create');
-Route::put('/reservations/store', 'ReservationController@store');
-Route::get('/reservations/show/{id}', 'PromoController@show');
+Route::post('/reservations/store', 'ReservationController@store');
+Route::get('/reservations/{id}/show/', 'PromoController@show');
+
+Route::get('/users', 'UserController@index');
+Route::get('/users/{id}/delete/','UserController@destroy');
+Route::get('/users/create', 'UserController@create');
+Route::post('/users/store', 'UserController@store');
 
 Route::get('/test', function()
 {

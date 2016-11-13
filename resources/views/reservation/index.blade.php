@@ -1,45 +1,41 @@
 @extends ('layouts.dashboard')
-@section('page_heading', "Gestion de reservation")
+@section('page_heading', trans('forestCab.GDR'))
 
 @section('section')
+<a href="{{ url ('/reservations/create') }}"><i class="fa fa-plus-square-o fa-fw"></i>{{trans('forestCab.Create')}}</a> 
 
-<div class="col-sm-12">
-        <H2>Liste des réservations</H2>
+@section ('cotable_panel_title',trans('forestCab.LR'))
+    @section ('cotable_panel_body')
+        
         <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Gamme</th>
                     <th>Client</th>
-                    <th>Date</th>
-                    <th>Date de debut</th>
-                    <th>Date de fin</th>
-                    <th>Adresse de départ</th>
-                    <th>Adresse d'arrivée</th>
-                    <th>Prix</th>
+                    <th>Chauffeur</th>
                 </tr>
             </thead>
             <tbody>
             @foreach($reservations as $reservation) 
                 <tr>
-                  <td>{{$reservation->get('range')->fetch()->get('name')}}</td>
-                  <td>{{$reservation->get('user')->fetch()->get('username')}}</td>
-                  <td>{{$reservation->get('date') != null ?$reservation->get('date')->format('Y-m-d H:i'):"---"}}</td>
-                  <td>{{$reservation->get('start_date') != null?$reservation->get('start_date')->format('Y-m-d H:i'):"--"}}</td>
-                  <td>{{$reservation->get('end_date') != null ?$reservation->get('end_date')->format('Y-m-d H:i'):"--"}}</td>
-                  <td>{{$reservation->get('from_adr')->fetch()->get('name')}}</td>
-                  <td>{{$reservation->get('to_adr')->fetch()->get('name')}}</td>
-                  <td>{{$reservation->get('price')}}</td>
-                  <td><a href="/reservation/{{ $reservation->getObjectId() }}/destroy"> editer</a></td> 
-                  <td><a href="/reservation/{{ $reservation->getObjectId() }}/destroy" >supprimer</a></td> 
+                  <td>{{$reservation->get('range') != null ? $reservation->get('range')->get('name'):""}}</td>
+                  <td>{{$reservation->get('user') != null ? $reservation->get('user')->get('username'):""}}</td>
+                  <td>{{$reservation->get('driver') != null ? $reservation->get('driver')->get('name'):""}}</td>
+                  <td>
+                  
+                  <a href="{{ url ('/reservations/'.$reservation->getObjectId().'/edit') }}"><i class="fa  fa-edit fa-fw"></i>  {{trans('forestCab.Update')}}</a>
+                <a href="{{ url ('/reservations/'.$reservation->getObjectId().'/delete') }}"> <i class="fa   fa-times fa-fw"></i> {{trans('forestCab.Delete')}}</a>
+              <a href="{{ url ('/reservations/'.$reservation->getObjectId().'/show') }}"> <i class="fa   fa-desktop fa-fw"></i> {{trans('forestCab.Show')}}</a>
+              </td>
                 </tr>
              @endforeach
              
          </tbody>           
         </table>
         </div>
-        <div class="col-sm-4">
-         <a href="reservation/create">Ajouter Nouvelle Réservation</a>
-        </div>
-    </div>
+        
+    
+    @endsection
+    @include('widgets.panel', array('header'=>true, 'as'=>'cotable'))
 @stop

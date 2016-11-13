@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
-
+use Parse\ParseObject;
+use Parse\ParseQuery;
 class HomeController extends Controller {
 
 	/*
@@ -20,7 +21,7 @@ class HomeController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('auth');
+		//$this->middleware('auth');
 	}
 
 	/**
@@ -30,7 +31,30 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+		try{
+
+		$query = new ParseQuery("Range");
+		$rangesCount =count($query->find());
+		$query = new ParseQuery("Promo");
+		$promosCount =count($query->find());
+		$query = new ParseQuery("Option");
+		$optionsCount =count($query->find());
+		$query = new ParseQuery("Driver");
+		$driversCount =count($query->find());
+		$query = new ParseQuery("Car");
+		$carsCount =count($query->find());
+		$query = new ParseQuery("Message");
+		$messagesCount =count($query->find());
+		$query = new ParseQuery("Reservation");
+		$reservationsCount =count($query->find());
+		
+
+		return view('home',compact('messagesCount','rangesCount','promosCount','optionsCount','driversCount','carsCount','reservationsCount'));
+	}
+	catch(ParseException $ex)
+		{
+			echo($ex);
+	 	}
 	}
 
 }

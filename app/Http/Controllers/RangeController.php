@@ -25,9 +25,17 @@ class RangeController extends Controller {
 	 */
 	public function index()
 	{
-		$query = new ParseQuery("Range");
-		$ranges = $query->find();
-		return view('range/index',compact('ranges'));
+		try
+		{
+			$query = new ParseQuery("Range");
+			$ranges = $query->find();
+
+			return view('range/index',compact('ranges'));
+		}
+		catch(ParseException $ex)
+		{
+
+		}
 	}
 
 	/**
@@ -37,7 +45,20 @@ class RangeController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		try
+		{
+			$query = new ParseQuery("Option");
+			$options = $query->find();
+			$query = new ParseQuery("Car");
+			$cars = $query->find();
+		return view('range/create' , compact('options','cars'));
+			
+		}
+		catch(ParseException $ex)
+		{
+
+	 	}
+
 	}
 
 	/**
@@ -49,18 +70,41 @@ class RangeController extends Controller {
 	{
 		try
 		{
-			$range=new ParseObject("Range");
+			
+			$this->validate($request, [
+			 	'name' => 'required',
+			 	'range_description' => 'required',
+		    ]);
+			
+			$range=ParseObject::create("Range");
 			$range->set("name",$request->get('name'));
 			$range->set("range_description",$request->get('range_description'));
-			$range->set("price",$request->get('price'));
-			$range->set("cars",$request->get('cars'));
-			$range->set("options",$request->get('options'));
+			$range->set("price",(int)$request->get('price'));
+			if(!empty($request->get("options_list")))
+			{
+				$queryOptions=new ParseQuery("Option");
+				$option=$queryOptions->containedIn("objectId", $request->get("options_list"));
+				$range->setArray("options",$queryOptions->find());
+			}
+			if(!empty($request->get("cars_list")))
+			{
+				$queryCars=new ParseQuery("Car");
+				$car=$queryCars->containedIn("objectId", $request->get("cars_list"));
+				$range->setArray("cars",$queryCars->find());
+			}
+			
+			
+			
 			$range->save();
+			
 		}
 		catch(ParseException $ex)
 		{
+			echo $ex;
 
 	 	}
+	 	
+	 	return back();
 	}
 
 	/**
@@ -71,7 +115,23 @@ class RangeController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		try
+		{
+			$ranges = new ParseQuery("Range");
+			$range = $ranges->get($id);
+			$query = new ParseQuery("Option");
+			$options = $query->find();
+			$ops=$range->get('options');
+			//dd($range->get('options')[0]->getObjectId());
+			$query = new ParseQuery("Car");
+			$cars = $query->find();
+			return view('range/show', compact('range','options','cars','ops'));
+		}
+	catch(ParseException $ex)
+		{
+
+
+	 	}
 	}
 
 	/**
@@ -82,7 +142,27 @@ class RangeController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		try
+		{
+			$this->validate($request, [
+			 	'name' => 'required',
+			 	'range_description' => 'required',
+		    ]);
+			$ranges = new ParseQuery("Range");
+			$range = $ranges->get($id);
+			$query = new ParseQuery("Option");
+			$options = $query->find();
+			$ops=$range->get('options');
+			//dd($range->get('options')[0]->getObjectId());
+			$query = new ParseQuery("Car");
+			$cars = $query->find();
+			return view('range/edit', compact('range','options','cars','ops'));
+		}
+	catch(ParseException $ex)
+		{
+
+
+	 	}
 	}
 
 	/**
@@ -95,20 +175,33 @@ class RangeController extends Controller {
 	{
 		try
 		{
-			$range = new ParseQuery("Range");
-			$range = $ranges->get($id);
+			$ranges = new ParseQuery("Range");
+			$range = $ranges->get($request->get('id'));
 			$range->set("name",$request->get('name'));
 			$range->set("range_description",$request->get('range_description'));
-			$range->set("price",$request->get('price'));
-			$range->set("cars",$request->get('cars'));
-			$range->set("options",$request->get('options'));
+			$range->set("price",(int)$request->get('price'));
+			if(!empty($request->get("options_list")))
+			{
+				$queryOptions=new ParseQuery("Option");
+				$option=$queryOptions->containedIn("objectId", $request->get("options_list"));
+				$range->setArray("options",$queryOptions->find());
+			}
+			if(!empty($request->get("cars_list")))
+			{
+				$queryCars=new ParseQuery("Car");
+				$car=$queryCars->containedIn("objectId", $request->get("cars_list"));
+				$range->setArray("cars",$queryCars->find());
+			}
+			
 			$range->save();
 		}
 		catch(ParseException $ex)
 		{
+			echo $ex;
 
 
  		}
+ 		return back();
 	}
 
 	/**
@@ -121,7 +214,7 @@ class RangeController extends Controller {
 	{
 		try
 		{
-			$range = new ParseQuery("Range");
+			$ranges = new ParseQuery("Range");
 			$range = $ranges->get($id);
 			$range->destroy();
 		}
